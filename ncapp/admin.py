@@ -18,6 +18,8 @@ from ncapp.models.drug_dispensation import DrugDispensation
 from ncapp.models.dispensation_fillable import DispensationFillable
 from ncapp.models.art import Art
 
+
+from ncapp.models.filters.clinicNurseListFilter import CLinicNurseListFilter
 # Model actions
 
 @admin.action(description='Generate Art daily dispensation form')
@@ -26,14 +28,14 @@ def generate_art_daily(modeladmin, request, queryset):
     
     art_total = []
     for i, art in enumerate (queryset.select_related('clinic', 'art_given', 'clinic__patient'  )):
-        art_total += [i, art.clinic.patient.__str__(), art.clinic.patient.sex, \
+        art_total += [[i, art.clinic.patient.__str__(), art.clinic.patient.sex, \
             art.clinic.art_number, art.clinic.file_number, art.wt, \
             art.ht, art.sbp_dbp, art.side_effect, \
             art.tb_status, art.dose_missed, art.pill_count, \
             art.art_given.name, art.number_of_regimen_pills, \
             art.pyridoxine, art.inh, art.bp_drug, \
             art.number_of_tabs, art.fp_meth, art.number_of_condoms, \
-            art.adverse_outcome]
+            art.adverse_outcome]]
         
     response = JsonResponse(art_total, safe=False)
     return response
@@ -45,14 +47,27 @@ def viral_load_monitoring(modeladmin, request, queryset):
     """generate viral load monitoring"""
     vl_all = []
     for i , vl in enumerate( queryset.select_related('clinic')  ):
-        vl = [ i, vl.clinic.patient.__str__(), vl.clinic.patient.sex, \
+        vl_all += [[ i, vl.clinic.patient.__str__(), vl.clinic.patient.sex, \
             vl.clinic.art_number, vl.clinic.file_number, \
             vl.clinic.initiation_date, vl.vl_date, vl.result, vl.regimen.__str__(), \
-            vl.clinic.cpt, vl.clinic.date_of_enrollment]
-        vl_all += vl
+            vl.clinic.cpt, vl.clinic.date_of_enrollment]]
+        
     response = JsonResponse(vl_all, safe=False)
     return response
 
+@admin.action(description= "daily Drug Dispensation")
+def nurse_drug_dispesation(model_admin, request, queryset):
+    """nurses daily drug dispensation form"""
+    dis_all = []
+    for i, dis in enumerate(queryset.select_related('nurse', nurse)):
+        
+        DrugDispensation.objects.filter(pk=dis.pk);
+        dis_all += [ 
+            [i, dis.nurse.__str__(), [x['name'] for x in dis.drugs.all().extra(select_params='name').values('name')[:]] ]
+         ]
+    
+    response = JsonResponse(dis_all, safe=False)
+    return response
 
 
 # Register your models here.
@@ -66,14 +81,17 @@ class ViralLoadAdmin(admin.ModelAdmin):
 
 class ClinicAdmin(admin.ModelAdmin):
     list_display = ['art_number','visit_date', 'nurse']
-    list_filter = ['visit_date']
+    list_filter = ('visit_date', CLinicNurseListFilter)
     search_fields = ['art_number']
 
 class NurseAdmin(admin.ModelAdmin):
     pass
 
 class DispensationAdmin(admin.ModelAdmin):
+    list_display =['nurse', 'dis_date', ]
     list_filter = ['dis_date']
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+    actions = [nurse_drug_dispesation]
 
 class ArtAdmin ( admin.ModelAdmin):
     fieldsets = [
@@ -98,6 +116,7 @@ class ArtAdmin ( admin.ModelAdmin):
         ] })
     ]
     actions = [generate_art_daily]
+    list_filter = ['clinic']
         
 
 admin.site.register(Location)

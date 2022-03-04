@@ -13,5 +13,6 @@
             "username": "admin",
             "password": "password"
         }
-    ]
+    ],
+    "python.formatting.provider": "yapf"
 }

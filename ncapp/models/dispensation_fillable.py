@@ -3,6 +3,9 @@ from .drug_fillable import DrugFillable
 from .drug_dispensation import DrugDispensation
 
 class DispensationFillable (models.Model):
-    dispensation = models.OneToOneField(DrugDispensation, on_delete=models.CASCADE)
-    fillable = models.OneToOneField(DrugFillable, on_delete=models.CASCADE)
+    dispensation = models.ForeignKey(DrugDispensation, on_delete=models.CASCADE)
+    fillable = models.ForeignKey(DrugFillable, on_delete=models.CASCADE)
     count = models.IntegerField("amount")
+
+    def __str__(self):
+        return self.dispensation.__str__()
