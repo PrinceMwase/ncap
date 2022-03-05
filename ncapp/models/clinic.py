@@ -17,6 +17,9 @@ class Clinic(models.Model):
     cpt = models.CharField(max_length=10)
     date_of_enrollment = models.DateTimeField('Date of Enrollment')
     visit_date = models.DateTimeField('Visit Date' )
+
+    class Meta:
+        verbose_name = "Appointment"
     
     
 

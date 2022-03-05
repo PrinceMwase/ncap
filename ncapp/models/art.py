@@ -43,6 +43,9 @@ class Art (models.Model):
     adverse_outcome = models.CharField(max_length=20)
     clinic = models.OneToOneField(Clinic, on_delete=models.CASCADE)
     # next appointment will be generated from clinic report
+
+    class Meta:
+        verbose_name = "ART Dispensation"
     
     def __str__(self):
         return self.clinic.__str__()

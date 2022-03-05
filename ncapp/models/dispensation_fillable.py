@@ -1,11 +1,14 @@
 from django.db import models
 from .drug_fillable import DrugFillable
-from .drug_dispensation import DrugDispensation
+
 
 class DispensationFillable (models.Model):
-    dispensation = models.ForeignKey(DrugDispensation, on_delete=models.CASCADE)
-    fillable = models.ForeignKey(DrugFillable, on_delete=models.CASCADE)
+    dispensation = models.ForeignKey('DrugDispensation', on_delete=models.CASCADE, unique=False )
+    fillable = models.ForeignKey(DrugFillable, on_delete=models.CASCADE, unique=False)
     count = models.IntegerField("amount")
+    
+    class Meta:
+        verbose_name = "Drug Dispensation"
 
     def __str__(self):
-        return self.dispensation.__str__()
+        return "%s : %i" % (self.fillable.name, self.count )

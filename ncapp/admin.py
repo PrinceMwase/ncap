@@ -3,6 +3,7 @@ from django.core import serializers
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django_seed import Seed
+from django.shortcuts import get_object_or_404
 
 from ncapp.models.location import Location
 from ncapp.models.actor import Actor
@@ -14,8 +15,9 @@ from ncapp.models.support_group import SupportGroup
 from ncapp.models.clinic import Clinic
 from ncapp.models.viral_load import ViralLoad
 from ncapp.models.drug_fillable import DrugFillable
-from ncapp.models.drug_dispensation import DrugDispensation
+
 from ncapp.models.dispensation_fillable import DispensationFillable
+from ncapp.models.drug_dispensation import DrugDispensation
 from ncapp.models.art import Art
 
 
@@ -59,13 +61,27 @@ def viral_load_monitoring(modeladmin, request, queryset):
 def nurse_drug_dispesation(model_admin, request, queryset):
     """nurses daily drug dispensation form"""
     dis_all = []
-    for i, dis in enumerate(queryset.select_related('nurse', nurse)):
-        
-        DrugDispensation.objects.filter(pk=dis.pk);
+    for i, dis in enumerate(queryset.select_related('nurse')):
+        # for y in DispensationFillable.objects.filter(dispensation=dis.pk).all().values()[:]
+        print(dis.drugs.all().distinct().values('name')[:])
+        print( "%s" % filter(lambda x : x['name'] == x['name'] ,   
+                  dis.drugs.all().distinct().values('name')[:]  )
+                 )
+      
         dis_all += [ 
-            [i, dis.nurse.__str__(), [x['name'] for x in dis.drugs.all().extra(select_params='name').values('name')[:]] ]
+          [
+            i, 
+            dis.nurse.__str__(), 
+            
+            [ (x['name'], get_object_or_404(DispensationFillable, dispensation=dis.pk, fillable=x["id"]).count  ) for 
+                x in 
+            [ 
+                x
+                 for x in dis.drugs.all().values()[:]  
+                 
+            ]]  
          ]
-    
+        ]
     response = JsonResponse(dis_all, safe=False)
     return response
 
@@ -79,7 +95,7 @@ class ViralLoadAdmin(admin.ModelAdmin):
 
 
 
-class ClinicAdmin(admin.ModelAdmin):
+class ClinicAdmin(admin.ModelAdmin):    
     list_display = ['art_number','visit_date', 'nurse']
     list_filter = ('visit_date', CLinicNurseListFilter)
     search_fields = ['art_number']
