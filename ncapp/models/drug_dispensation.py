@@ -5,7 +5,7 @@ from .nurse import Nurse
 
 class DrugDispensation (models.Model):
     nurse = models.ForeignKey(Nurse, on_delete=models.CASCADE)
-    dis_date = models.DateTimeField("Drug dispensation date")
+    dis_date = models.DateField("Drug dispensation date")
 
     drugs = models.ManyToManyField( 
         DrugFillable,

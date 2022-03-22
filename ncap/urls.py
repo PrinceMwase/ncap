@@ -5,23 +5,20 @@ from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
 from rest_framework.authtoken import views
 from ncapp.token import CustomAuthToken
-# Serializers define the API representation.
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = User
-        fields = ['url', 'username', 'email', 'is_staff']
 
-# ViewSets define the view behavior.
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
 
-# Routers provide an easy way of automatically determining the URL conf.
+from rest_framework import routers
+from ncapp import views
+
+
 router = routers.DefaultRouter()
-router.register(r'users', UserViewSet)
+router.register(r'users', views.UserViewSet)
+router.register(r'groups', views.GroupViewSet)
+router.register(r'visits', views.CLinicViewSet)
 
 
 urlpatterns = [
+    path('', include(router.urls)),
     path('ncapp/', include('ncapp.urls')),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
