@@ -38,10 +38,10 @@ class Art (models.Model):
     inh = models.IntegerField()  
     bp_drug = models.CharField(max_length=20)
     number_of_tabs = models.IntegerField()
-    fp_meth = models.IntegerField()
+    fp_meth = models.CharField(max_length=20)
     number_of_condoms = models.IntegerField()
     adverse_outcome = models.CharField(max_length=20)
-    clinic = models.OneToOneField(Clinic, on_delete=models.CASCADE)
+    clinic = models.OneToOneField(Clinic, on_delete=models.CASCADE, verbose_name="Visit")
     # next appointment will be generated from clinic report
 
     class Meta:

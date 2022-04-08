@@ -15,7 +15,7 @@ class DrugDispensation (models.Model):
     fillable = models.ForeignObjectRel('dispensation', DispensationFillable)
     
     def __str__(self):
-        return "Drug dispensation on : %s " %  self.dis_date.__str__()
+        return "%s : %s " %  (self.dis_date.__str__(), self.nurse.user.__str__() )
     def getKey(self):
         return self.pk
 
