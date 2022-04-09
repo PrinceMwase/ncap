@@ -62,7 +62,19 @@ class DrugDispensationSerializer(serializers.ModelSerializer):
         model = DrugDispensation
         exclude = ["nurse"]
 
-        
+class VlSerializer(serializers.Serializer):
+    date_of_enrollment = serializers.DateField()
+    regimen = serializers.CharField(max_length=64)
+    vl_date = serializers.DateField('viral load date')
+    result = serializers.CharField(max_length=20)
+    patient = serializers.CharField(max_length=20)
+    sex = serializers.CharField(max_length=20)
+    art_number = serializers.CharField(max_length=20)
+    file_number = serializers.CharField(max_length=20)
+    initiation_date = serializers.DateField()
+    cpt = serializers.CharField(max_length=20)
+    remark = serializers.CharField( max_length=64, default="" ) 
+
 
 class DispensationFillableSerializer(serializers.ModelSerializer):
     dispensation = DrugDispensationSerializer
