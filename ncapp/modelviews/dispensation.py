@@ -30,7 +30,7 @@ class DrugDispensationViewSet(viewsets.ViewSet):
     def list(self, request):
 
         self.check_permissions(request=request)
-        queryset = self.queryset
+        queryset = self.get_queryset()
         serializer = DrugDispensationSerializer(queryset, many=True, context={'request': request})
         return Response(serializer.data)
 

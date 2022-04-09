@@ -58,14 +58,14 @@ class DispensationFieldSerializer(serializers.ListSerializer):
 
 class DrugDispensationSerializer(serializers.ModelSerializer):
     class Meta:
-        # list_serializer_class = DispensationFieldSerializer
+        list_serializer_class = DispensationFieldSerializer
         model = DrugDispensation
         exclude = ["nurse"]
 
         
 
 class DispensationFillableSerializer(serializers.ModelSerializer):
-    # dispensation = DrugDispensationSerializer
+    dispensation = DrugDispensationSerializer
     class Meta:
         model = DispensationFillable
         fields = "__all__"

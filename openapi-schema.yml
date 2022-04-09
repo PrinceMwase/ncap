@@ -1,0 +1,2184 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /users/:
+    get:
+      operationId: listUsers
+      description: API endpoint that allows users to be viewed or edited.
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+          description: ''
+      tags:
+      - users
+    post:
+      operationId: createUser
+      description: API endpoint that allows users to be viewed or edited.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+      tags:
+      - users
+  /users/{id}/:
+    get:
+      operationId: retrieveUser
+      description: API endpoint that allows users to be viewed or edited.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+      tags:
+      - users
+    put:
+      operationId: updateUser
+      description: API endpoint that allows users to be viewed or edited.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+      tags:
+      - users
+    patch:
+      operationId: partialUpdateUser
+      description: API endpoint that allows users to be viewed or edited.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+      tags:
+      - users
+    delete:
+      operationId: destroyUser
+      description: API endpoint that allows users to be viewed or edited.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - users
+  /groups/:
+    get:
+      operationId: listGroups
+      description: API endpoint that allows groups to be viewed or edited.
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Group'
+          description: ''
+      tags:
+      - groups
+    post:
+      operationId: createGroup
+      description: API endpoint that allows groups to be viewed or edited.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Group'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Group'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Group'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+          description: ''
+      tags:
+      - groups
+  /groups/{id}/:
+    get:
+      operationId: retrieveGroup
+      description: API endpoint that allows groups to be viewed or edited.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this group.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+          description: ''
+      tags:
+      - groups
+    put:
+      operationId: updateGroup
+      description: API endpoint that allows groups to be viewed or edited.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this group.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Group'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Group'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Group'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+          description: ''
+      tags:
+      - groups
+    patch:
+      operationId: partialUpdateGroup
+      description: API endpoint that allows groups to be viewed or edited.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this group.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Group'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Group'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Group'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+          description: ''
+      tags:
+      - groups
+    delete:
+      operationId: destroyGroup
+      description: API endpoint that allows groups to be viewed or edited.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this group.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - groups
+  /patients/:
+    get:
+      operationId: listPatients
+      description: ''
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Patient'
+          description: ''
+      tags:
+      - patients
+    post:
+      operationId: createPatient
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patient'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Patient'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Patient'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+          description: ''
+      tags:
+      - patients
+  /patients/{id}/:
+    get:
+      operationId: retrievePatient
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this patient.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+          description: ''
+      tags:
+      - patients
+    put:
+      operationId: updatePatient
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this patient.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patient'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Patient'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Patient'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+          description: ''
+      tags:
+      - patients
+    patch:
+      operationId: partialUpdatePatient
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this patient.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patient'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Patient'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Patient'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+          description: ''
+      tags:
+      - patients
+    delete:
+      operationId: destroyPatient
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this patient.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - patients
+  /visits/:
+    get:
+      operationId: listClinics
+      description: A simple ViewSet for listing or retrieving visits.
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ''
+      tags:
+      - visits
+    post:
+      operationId: createClinic
+      description: A simple ViewSet for listing or retrieving visits.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - visits
+  /visits/{id}/:
+    get:
+      operationId: retrieveClinic
+      description: A simple ViewSet for listing or retrieving visits.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Appointment.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - visits
+    put:
+      operationId: updateClinic
+      description: A simple ViewSet for listing or retrieving visits.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Appointment.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - visits
+    patch:
+      operationId: partialUpdateClinic
+      description: A simple ViewSet for listing or retrieving visits.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Appointment.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - visits
+    delete:
+      operationId: destroyClinic
+      description: A simple ViewSet for listing or retrieving visits.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Appointment.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - visits
+  /art_dispensation/:
+    get:
+      operationId: listArts
+      description: A simple ViewSet for listing or retrieving ART dispensations.
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ''
+      tags:
+      - art-dispensation
+    post:
+      operationId: createArt
+      description: A simple ViewSet for listing or retrieving ART dispensations.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - art-dispensation
+  /art_dispensation/{id}/:
+    get:
+      operationId: retrieveArt
+      description: A simple ViewSet for listing or retrieving ART dispensations.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this ART Dispensation.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - art-dispensation
+    put:
+      operationId: updateArt
+      description: A simple ViewSet for listing or retrieving ART dispensations.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this ART Dispensation.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - art-dispensation
+    patch:
+      operationId: partialUpdateArt
+      description: A simple ViewSet for listing or retrieving ART dispensations.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this ART Dispensation.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - art-dispensation
+    delete:
+      operationId: destroyArt
+      description: A simple ViewSet for listing or retrieving ART dispensations.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this ART Dispensation.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - art-dispensation
+  /drug_dispensation/:
+    get:
+      operationId: listDrugDispensations
+      description: A simple ViewSet for listing or retrieving Drug dispensations.
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ''
+      tags:
+      - drug-dispensation
+    post:
+      operationId: createDrugDispensation
+      description: A simple ViewSet for listing or retrieving Drug dispensations.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - drug-dispensation
+  /drug_dispensation/{id}/:
+    get:
+      operationId: retrieveDrugDispensation
+      description: A simple ViewSet for listing or retrieving Drug dispensations.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Dispensation session.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - drug-dispensation
+    put:
+      operationId: updateDrugDispensation
+      description: A simple ViewSet for listing or retrieving Drug dispensations.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Dispensation session.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - drug-dispensation
+    patch:
+      operationId: partialUpdateDrugDispensation
+      description: A simple ViewSet for listing or retrieving Drug dispensations.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Dispensation session.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - drug-dispensation
+    delete:
+      operationId: destroyDrugDispensation
+      description: A simple ViewSet for listing or retrieving Drug dispensations.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Dispensation session.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - drug-dispensation
+  /drug_fillable/:
+    get:
+      operationId: listDrugFillables
+      description: A simple ViewSet for listing or retrieving Drugs
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ''
+      tags:
+      - drug-fillable
+    post:
+      operationId: createDrugFillable
+      description: A simple ViewSet for listing or retrieving Drugs
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - drug-fillable
+  /drug_fillable/{id}/:
+    get:
+      operationId: retrieveDrugFillable
+      description: A simple ViewSet for listing or retrieving Drugs
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Drug.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - drug-fillable
+    put:
+      operationId: updateDrugFillable
+      description: A simple ViewSet for listing or retrieving Drugs
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Drug.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - drug-fillable
+    patch:
+      operationId: partialUpdateDrugFillable
+      description: A simple ViewSet for listing or retrieving Drugs
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Drug.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - drug-fillable
+    delete:
+      operationId: destroyDrugFillable
+      description: A simple ViewSet for listing or retrieving Drugs
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Drug.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - drug-fillable
+  /viral_load/:
+    get:
+      operationId: listViralLoads
+      description: A simple ViewSet for listing or retrieving ViralLoad
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ''
+      tags:
+      - viral-load
+    post:
+      operationId: createViralLoad
+      description: A simple ViewSet for listing or retrieving ViralLoad
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - viral-load
+  /viral_load/{id}/:
+    get:
+      operationId: retrieveViralLoad
+      description: A simple ViewSet for listing or retrieving ViralLoad
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this viral load.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - viral-load
+    put:
+      operationId: updateViralLoad
+      description: A simple ViewSet for listing or retrieving ViralLoad
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this viral load.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - viral-load
+    patch:
+      operationId: partialUpdateViralLoad
+      description: A simple ViewSet for listing or retrieving ViralLoad
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this viral load.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - viral-load
+    delete:
+      operationId: destroyViralLoad
+      description: A simple ViewSet for listing or retrieving ViralLoad
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this viral load.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - viral-load
+  /dispensation_fillable/:
+    get:
+      operationId: listDispensationFillables
+      description: A simple ViewSet for listing or retrieving Drug dispensations.
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ''
+      tags:
+      - dispensation-fillable
+    post:
+      operationId: createDispensationFillable
+      description: A simple ViewSet for listing or retrieving Drug dispensations.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - dispensation-fillable
+  /dispensation_fillable/{id}/:
+    get:
+      operationId: retrieveDispensationFillable
+      description: A simple ViewSet for listing or retrieving Drug dispensations.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Drug Dispensation.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - dispensation-fillable
+    put:
+      operationId: updateDispensationFillable
+      description: A simple ViewSet for listing or retrieving Drug dispensations.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Drug Dispensation.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - dispensation-fillable
+    patch:
+      operationId: partialUpdateDispensationFillable
+      description: A simple ViewSet for listing or retrieving Drug dispensations.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Drug Dispensation.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - dispensation-fillable
+    delete:
+      operationId: destroyDispensationFillable
+      description: A simple ViewSet for listing or retrieving Drug dispensations.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Drug Dispensation.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - dispensation-fillable
+  /actors/:
+    get:
+      operationId: listActors
+      description: ''
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Actor'
+          description: ''
+      tags:
+      - actors
+    post:
+      operationId: createActor
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Actor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Actor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Actor'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Actor'
+          description: ''
+      tags:
+      - actors
+  /actors/{id}/:
+    get:
+      operationId: retrieveActor
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Actor'
+          description: ''
+      tags:
+      - actors
+    put:
+      operationId: updateActor
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Actor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Actor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Actor'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Actor'
+          description: ''
+      tags:
+      - actors
+    patch:
+      operationId: partialUpdateActor
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Actor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Actor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Actor'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Actor'
+          description: ''
+      tags:
+      - actors
+    delete:
+      operationId: destroyActor
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - actors
+  /nurse/:
+    get:
+      operationId: listNurses
+      description: ''
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Nurse'
+          description: ''
+      tags:
+      - nurse
+    post:
+      operationId: createNurse
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Nurse'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Nurse'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Nurse'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Nurse'
+          description: ''
+      tags:
+      - nurse
+  /nurse/{id}/:
+    get:
+      operationId: retrieveNurse
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this nurse.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Nurse'
+          description: ''
+      tags:
+      - nurse
+    put:
+      operationId: updateNurse
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this nurse.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Nurse'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Nurse'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Nurse'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Nurse'
+          description: ''
+      tags:
+      - nurse
+    patch:
+      operationId: partialUpdateNurse
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this nurse.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Nurse'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Nurse'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Nurse'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Nurse'
+          description: ''
+      tags:
+      - nurse
+    delete:
+      operationId: destroyNurse
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this nurse.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - nurse
+  /location/:
+    get:
+      operationId: listLocations
+      description: ''
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Location'
+          description: ''
+      tags:
+      - location
+    post:
+      operationId: createLocation
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Location'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Location'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Location'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+          description: ''
+      tags:
+      - location
+  /location/{id}/:
+    get:
+      operationId: retrieveLocation
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this location.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+          description: ''
+      tags:
+      - location
+    put:
+      operationId: updateLocation
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this location.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Location'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Location'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Location'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+          description: ''
+      tags:
+      - location
+    patch:
+      operationId: partialUpdateLocation
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this location.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Location'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Location'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Location'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+          description: ''
+      tags:
+      - location
+    delete:
+      operationId: destroyLocation
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this location.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - location
+  /support_group/:
+    get:
+      operationId: listSupportGroups
+      description: ''
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SupportGroup'
+          description: ''
+      tags:
+      - support-group
+    post:
+      operationId: createSupportGroup
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupportGroup'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SupportGroup'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SupportGroup'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupportGroup'
+          description: ''
+      tags:
+      - support-group
+  /support_group/{id}/:
+    get:
+      operationId: retrieveSupportGroup
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this support group.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupportGroup'
+          description: ''
+      tags:
+      - support-group
+    put:
+      operationId: updateSupportGroup
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this support group.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupportGroup'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SupportGroup'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SupportGroup'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupportGroup'
+          description: ''
+      tags:
+      - support-group
+    patch:
+      operationId: partialUpdateSupportGroup
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this support group.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupportGroup'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SupportGroup'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SupportGroup'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupportGroup'
+          description: ''
+      tags:
+      - support-group
+    delete:
+      operationId: destroySupportGroup
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this support group.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - support-group
+  /site/:
+    get:
+      operationId: listSites
+      description: ''
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Site'
+          description: ''
+      tags:
+      - site
+    post:
+      operationId: createSite
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Site'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Site'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Site'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Site'
+          description: ''
+      tags:
+      - site
+  /site/{id}/:
+    get:
+      operationId: retrieveSite
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this site.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Site'
+          description: ''
+      tags:
+      - site
+    put:
+      operationId: updateSite
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this site.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Site'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Site'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Site'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Site'
+          description: ''
+      tags:
+      - site
+    patch:
+      operationId: partialUpdateSite
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this site.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Site'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Site'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Site'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Site'
+          description: ''
+      tags:
+      - site
+    delete:
+      operationId: destroySite
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this site.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - site
+  /api-token-auth/:
+    post:
+      operationId: createAuthToken
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthToken'
+          description: ''
+      tags:
+      - api-token-auth
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        url:
+          type: string
+          readOnly: true
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+\z
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        groups:
+          type: array
+          items:
+            type: integer
+          description: The groups this user belongs to. A user will get all permissions
+            granted to each of their groups.
+      required:
+      - username
+    Group:
+      type: object
+      properties:
+        url:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 150
+      required:
+      - name
+    Patient:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        first_name:
+          type: string
+          maxLength: 20
+        last_name:
+          type: string
+          maxLength: 20
+        sex:
+          enum:
+          - m
+          - f
+          type: string
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        date_of_birth:
+          type: string
+          format: date
+      required:
+      - first_name
+      - last_name
+      - sex
+    Actor:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+\z
+          maxLength: 150
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        is_staff:
+          type: boolean
+          description: Designates whether the user can log into this admin site.
+        is_active:
+          type: boolean
+          description: Designates whether this user should be treated as active. Unselect
+            this instead of deleting accounts.
+        phone_number:
+          type: string
+          maxLength: 13
+        location:
+          type: integer
+        groups:
+          type: array
+          items:
+            type: integer
+          description: The groups this user belongs to. A user will get all permissions
+            granted to each of their groups.
+      required:
+      - username
+      - location
+    Nurse:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user:
+          type: string
+      required:
+      - user
+    Location:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+      required:
+      - name
+    SupportGroup:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 42
+        location:
+          type: integer
+      required:
+      - name
+      - location
+    Site:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 64
+        location:
+          type: integer
+      required:
+      - name
+      - location
+    AuthToken:
+      type: object
+      properties:
+        username:
+          type: string
+          writeOnly: true
+        password:
+          type: string
+          writeOnly: true
+        token:
+          type: string
+          readOnly: true
+      required:
+      - username
+      - password

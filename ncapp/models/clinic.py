@@ -12,10 +12,10 @@ class Clinic(models.Model):
     site = models.ForeignKey(Site, on_delete=models.CASCADE)
     art_number = models.CharField(max_length=20)
     file_number = models.CharField(max_length=20)
-    initiation_date = models.DateTimeField('Date initiated')
-    next_appointment = models.DateTimeField('Next appointment')
+    initiation_date = models.DateField('Date initiated')
+    next_appointment = models.DateField('Next appointment')
     cpt = models.CharField(max_length=10)
-    date_of_enrollment = models.DateTimeField('Date of Enrollment')
+    date_of_enrollment = models.DateField('Date of Enrollment')
     visit_date = models.DateField('Visit Date' )
 
     class Meta:
@@ -25,5 +25,5 @@ class Clinic(models.Model):
     
 
     def __str__(self):
-        return self.art_number+"_"+self.patient.first_name+"_"+self.visit_date.__str__()
+        return self.art_number+"_"+self.support_group.__str__()+"_"+self.visit_date.__str__()
         
