@@ -5,6 +5,9 @@ from rest_framework import viewsets
 from rest_framework import permissions
 from rest_framework.response import Response
 from django.http import JsonResponse
+from ncapp.serializers import VlSerializer
+from tabular_export.core import  export_to_excel_response
+from django.utils import timezone
 
 class VlMonitoringViewSet(viewsets.ViewSet):
     """
@@ -13,6 +16,7 @@ class VlMonitoringViewSet(viewsets.ViewSet):
    
     queryset = ViralLoad.objects.filter( vl_date=date.today()  )
     permission_classes = [permissions.IsAuthenticated]
+    serializers = VlSerializer
     def get_queryset(self):
         # print(ViralLoad.objects.all())
         return self.queryset
@@ -24,10 +28,7 @@ class VlMonitoringViewSet(viewsets.ViewSet):
                 vl.clinic.art_number, vl.clinic.file_number, \
                 vl.clinic.initiation_date, vl.vl_date, vl.result, vl.regimen.__str__(), \
                 vl.clinic.cpt, vl.clinic.date_of_enrollment]]
-            
-        response = JsonResponse(vl_all, safe=False)
-        return response
-    # self.check_permissions(request=request)
-    # queryset = self.get_queryset()
-    # data = serializers.serialize('json', queryset.all())
-    # return Response(data)
+        
+        headers = ['ID', 'Patient' , 'Sex', 'ART Number', 'File Number', 'Initiation Date', 'Viral Date', 'Viral Load Result', 'regimen', 'CPT', 'Date of Enrollment' ]
+        excel = export_to_excel_response('vl%s.xlsx' % timezone.datetime.today() , headers, vl_all)
+        return excel
