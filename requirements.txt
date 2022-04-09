@@ -1,3 +1,4 @@
+python==3.8.10
 aiohttp==3.8.1
 aiosignal==1.2.0
 alabaster==0.7.12
@@ -80,6 +81,7 @@ outcome==1.1.0
 packaging==21.3
 parsimonious==0.8.1
 pathspec==0.9.0
+pip==22.0.4
 platformdirs==2.4.1
 pluggy==1.0.0
 prompt-toolkit==3.0.26
@@ -114,6 +116,7 @@ rlp==2.0.1
 schedule==1.1.0
 selenium==4.1.0
 semantic-version==2.8.5
+setuptools==59.6.0
 six==1.16.0
 sniffio==1.2.0
 snowballstemmer==2.2.0
@@ -144,9 +147,11 @@ urllib3==1.26.8
 varint==1.0.2
 vine==5.0.0
 vvm==0.1.0
+vyper==0.3.1
 wcwidth==0.2.5
 web3==5.27.0
 websockets==9.1
+wheel==0.37.1
 wrapt==1.13.3
 wsproto==1.0.0
 XlsxWriter==3.0.3
