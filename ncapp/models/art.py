@@ -42,6 +42,8 @@ class Art (models.Model):
     number_of_condoms = models.IntegerField()
     adverse_outcome = models.CharField(max_length=20)
     clinic = models.OneToOneField(Clinic, on_delete=models.CASCADE, verbose_name="Visit")
+    created_at = models.DateField(auto_now_add=True)
+    updated_at = models.DateField(auto_now=True)
     # next appointment will be generated from clinic report
 
     class Meta:

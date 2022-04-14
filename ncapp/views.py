@@ -72,7 +72,6 @@ class LocationViewSet(viewsets.ModelViewSet):
 class SupportGroupViewSet(viewsets.ModelViewSet):
     queryset = SupportGroup.objects.all()
     serializer_class = SupportGroupSerializer
-    permission_classes = [permissions.IsAuthenticated]
 
 class SiteViewSet(viewsets.ModelViewSet):
     queryset = Site.objects.all()

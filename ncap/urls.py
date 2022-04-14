@@ -15,11 +15,13 @@ from ncapp.modelviews.art import ArtViewSet
 from ncapp.modelviews.dispensation import DrugDispensationViewSet
 from ncapp.modelviews.drug import DrugFillableViewSet
 from ncapp.modelviews.viral_load_monitoring import VlMonitoringViewSet
+from ncapp.modelviews.daily_art_dispensation import ARTDispensingViewSet
 from ncapp.modelviews.dispensation_fillable import DispensationFillableViewSet
 
 
 router = routers.DefaultRouter()
 router.register(r'users', myViews.UserViewSet)
+router.register(r'support_group', myViews.SupportGroupViewSet)
 router.register(r'groups', myViews.GroupViewSet)
 router.register(r'patients', myViews.PatientViewSet)
 router.register(r'visits', ClinicViewSet, basename="visits")
@@ -30,6 +32,7 @@ router.register(r'viral_load', ViralLoadViewSet, basename="viral_load")
 router.register(r'dispensation_fillable', DispensationFillableViewSet, basename="dispensation_fillable")
 router.register(r'actors', myViews.ActorViewSet)
 router.register(r'vl_daily', VlMonitoringViewSet)
+router.register(r'art_daily', ARTDispensingViewSet)
 router.register(r'nurse', myViews.NurseViewSet)
 router.register(r'location', myViews.LocationViewSet)
 router.register(r'support_group', myViews.SupportGroupViewSet)

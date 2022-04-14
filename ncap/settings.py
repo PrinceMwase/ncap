@@ -40,7 +40,7 @@ SECRET_KEY = 'django-insecure-f=0q916s(=e$3^55(ggk-vya36*&y7f0ilbtd$@gi2wwxn)*n2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]', 'localhost:*']
+ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]', 'localhost:*', 'localhost']
 
 
 # Application definition
@@ -177,6 +177,13 @@ REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler',
   
 }
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',
+    'https://localhost:3000',
+)
+CORS_ALLOW_CREDENTIALS = True
+
+CSRF_COOKIE_NAME = "csrftoken"
 
 # Configure Django App for Heroku.
 import django_heroku
