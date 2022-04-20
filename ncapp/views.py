@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework import permissions
-from ncapp.serializers import UserSerializer, \
+from ncapp.serializers import StockSerializer, UserSerializer, \
  GroupSerializer,ClinicSerializer, \
  PatientSerializer, NurseSerializer, \
  ActorSerializer, LocationSerializer, \
@@ -16,6 +16,7 @@ from ncapp.models.actor import Actor
 from ncapp.models.patient import Patient
 from ncapp.models.nurse import Nurse
 from ncapp.models.site import Site
+from ncapp.models.stock import Stock
 from ncapp.models.regimen import Regimen
 from ncapp.models.support_group import SupportGroup
 from ncapp.models.viral_load import ViralLoad
@@ -43,6 +44,13 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
+    permission_classes = [permissions.IsAuthenticated]
+class StockViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows stock to be viewed or edited.
+    """
+    queryset = Stock.objects.all()
+    serializer_class = StockSerializer
     permission_classes = [permissions.IsAuthenticated]
 
 

@@ -8,7 +8,6 @@ from django.http import JsonResponse
 from ncapp.serializers import VlSerializer
 from tabular_export.core import export_to_excel_response
 from django.utils import timezone
-import pandas as pd
 from openpyxl import load_workbook
 
 class ARTDispensingViewSet(viewsets.ViewSet):

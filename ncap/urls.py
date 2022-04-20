@@ -1,3 +1,4 @@
+from posixpath import basename
 from django.contrib import admin
 from django.urls import include, path
 
@@ -37,6 +38,7 @@ router.register(r'nurse', myViews.NurseViewSet)
 router.register(r'location', myViews.LocationViewSet)
 router.register(r'support_group', myViews.SupportGroupViewSet)
 router.register(r'site', myViews.SiteViewSet)
+router.register(r'stock', myViews.StockViewSet, basename='stock')
 
 
 urlpatterns = [

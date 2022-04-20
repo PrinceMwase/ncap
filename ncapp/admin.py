@@ -14,7 +14,8 @@ from ncapp.models.regimen import Regimen
 from ncapp.models.support_group import SupportGroup
 from ncapp.models.clinic import Clinic
 from ncapp.models.viral_load import ViralLoad
-from ncapp.models.drug_fillable import DrugFillable
+from ncapp.models.drug_fillable import DrugFillable 
+from ncapp.models.stock import Stock 
 
 from ncapp.models.dispensation_fillable import DispensationFillable
 from ncapp.models.drug_dispensation import DrugDispensation
@@ -148,3 +149,4 @@ admin.site.register(DrugFillable)
 admin.site.register(DrugDispensation, DispensationAdmin)
 admin.site.register(DispensationFillable)
 admin.site.register(Art, ArtAdmin)
+admin.site.register(Stock)

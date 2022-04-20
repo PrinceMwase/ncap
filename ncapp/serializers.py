@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User, Group
+from ncapp.models.stock import Stock
 from rest_framework import serializers
 from ncapp.models import Clinic
 
@@ -45,6 +46,10 @@ class ActorSerializer(serializers.ModelSerializer):
 class ArtSerializer(serializers.ModelSerializer):
     class Meta:
         model = Art
+        fields = "__all__"
+class StockSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Stock
         fields = "__all__"
 
 class DispensationFieldSerializer(serializers.ListSerializer):

@@ -104,8 +104,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME' : 'ncapp',
-        'USER' : 'admin',
-        'PASSWORD' : 'password',
+        'USER' : 'root',
+        'PASSWORD' : '',
         'HOST' : 'localhost',
         'PORT' : '3306'
 
