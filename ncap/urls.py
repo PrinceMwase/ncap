@@ -39,6 +39,7 @@ router.register(r'location', myViews.LocationViewSet)
 router.register(r'support_group', myViews.SupportGroupViewSet)
 router.register(r'site', myViews.SiteViewSet)
 router.register(r'stock', myViews.StockViewSet, basename='stock')
+router.register(r'login', myViews.authentication, basename='login')
 
 
 urlpatterns = [

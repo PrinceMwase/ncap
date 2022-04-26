@@ -20,6 +20,7 @@ class Clinic(models.Model):
 
     class Meta:
         verbose_name = "Appointment"
+        ordering = ['-id']
         
     
     

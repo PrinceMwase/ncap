@@ -10,7 +10,7 @@ from ncapp.serializers import StockSerializer, UserSerializer, \
     GroupSerializer, ClinicSerializer, \
     PatientSerializer, NurseSerializer, \
     ActorSerializer, LocationSerializer, \
-    SupportGroupSerializer, SiteSerializer
+    SupportGroupSerializer, SiteSerializer, LoginSerializer,PatientClinicSerializer
 from ncapp.models.clinic import Clinic
 from ncapp.models.location import Location
 from ncapp.models.actor import Actor
@@ -61,7 +61,7 @@ class PatientViewSet(viewsets.ModelViewSet):
     # permission_classes = [permissions.DjangoModelPermissions]
     permission_classes = [permissions.IsAuthenticated]
 
-    @action(detail=False, methods=['get'])
+    @action(detail=False, methods=['get'], serializer_class=PatientClinicSerializer)
     def support_group(self, request):
         patients = self.queryset.filter(
             support_group=request.GET['support_group'])
@@ -107,21 +107,21 @@ def index(request):
     return HttpResponse("Hello, world. You're at the ncaap index.")
 
 
-class authentication (APIView):
+class authentication (viewsets.ViewSet):
     permission_classes = [permissions.AllowAny]
+    serializer_class = LoginSerializer
 
-    @api_view(['POST'])
-    def loginUser(request):
+    @action(detail=False, methods=['POST'])
+    def login(self, request, format=None):
 
-        if request.method == "POST":
-            username = request.data['username']
-            password = request.data['password']
-            user = authenticate(request, username=username, password=password)
+        username = request.data['username']
+        password = request.data['password']
+        user = authenticate(request, username=username, password=password)
 
-            if user is not None:
-                login(request, user)
-                data = UserSerializer(user, context={'request': request})
-                return Response(status=200, data=data.data)
-            else:
-                return Response(status=304, data=None)
+        if user is not None:
+            login(request, user)
+            data = UserSerializer(user, context={'request': request})
+            return Response(status=200, data=data.data)
+        else:
+            return Response(status=304, data=None)
         return Response(status=304, data=None)

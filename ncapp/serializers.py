@@ -38,6 +38,12 @@ class PatientSerializer(serializers.ModelSerializer):
         model = Patient
         fields = "__all__"
 
+class PatientClinicSerializer(serializers.ModelSerializer):
+    clinic_set = ClinicSerializer(many=True,read_only=True)
+    class Meta:
+        model = Patient
+        fields = "__all__"
+
 class ActorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Actor
@@ -48,6 +54,12 @@ class ArtSerializer(serializers.ModelSerializer):
         model = Art
         fields = "__all__"
 class StockSerializer(serializers.ModelSerializer):
+    fillable = serializers.SlugRelatedField(
+        many=False,
+        read_only=False,
+        slug_field='name',  
+        queryset=DrugFillable.objects.all()
+        )
     class Meta:
         model = Stock
         fields = "__all__"
