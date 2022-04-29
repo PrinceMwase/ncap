@@ -12,7 +12,7 @@ from ncapp.models.regimen import Regimen
 from ncapp.models.support_group import SupportGroup
 from ncapp.models.viral_load import ViralLoad
 from ncapp.models.drug_fillable import DrugFillable
-
+from django.shortcuts import get_object_or_404
 from ncapp.models.dispensation_fillable import DispensationFillable
 from ncapp.models.drug_dispensation import DrugDispensation
 from ncapp.models.art import Art
@@ -53,16 +53,7 @@ class ArtSerializer(serializers.ModelSerializer):
     class Meta:
         model = Art
         fields = "__all__"
-class StockSerializer(serializers.ModelSerializer):
-    fillable = serializers.SlugRelatedField(
-        many=False,
-        read_only=False,
-        slug_field='name',  
-        queryset=DrugFillable.objects.all()
-        )
-    class Meta:
-        model = Stock
-        fields = "__all__"
+
 
 class DispensationFieldSerializer(serializers.ListSerializer):
     def to_representation(self, data):
@@ -73,11 +64,7 @@ class DispensationFieldSerializer(serializers.ListSerializer):
         
         return super(DispensationFieldSerializer, self).to_representation(data)
 
-class DrugDispensationSerializer(serializers.ModelSerializer):
-    class Meta:
-        list_serializer_class = DispensationFieldSerializer
-        model = DrugDispensation
-        exclude = ["nurse"]
+
 
 class VlSerializer(serializers.Serializer):
     date_of_enrollment = serializers.DateField()
@@ -94,15 +81,31 @@ class VlSerializer(serializers.Serializer):
 
 
 class DispensationFillableSerializer(serializers.ModelSerializer):
-    dispensation = DrugDispensationSerializer
     class Meta:
         model = DispensationFillable
-        fields = "__all__"
-        
+        fields = ["count"]
+
+
+
+
 
 class DrugFillableSerializer(serializers.ModelSerializer):
     class Meta:
         model = DrugFillable
+        fields = "__all__"
+
+class DrugDispensationSerializer(serializers.ModelSerializer):
+    # fillable_set = DispensationFillableSerializer(many=False)
+    class Meta:
+        list_serializer_class = DispensationFieldSerializer
+        model = DrugDispensation
+        fields = "__all__"
+
+class StockSerializer(serializers.ModelSerializer):
+    fillable = DrugFillableSerializer(many=False,read_only=True)
+    disoensation = DrugDispensationSerializer(many=False,read_only=True)
+    class Meta:
+        model = Stock
         fields = "__all__"
 
 class LocationSerializer(serializers.ModelSerializer):
